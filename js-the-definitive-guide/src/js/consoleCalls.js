@@ -1,0 +1,11 @@
+export const log = console.log
+export const error = console.error
+export const warn = console.warn
+export const clear = console.clear
+export const time = console.time
+export const timeEnd = console.timeEnd
+export const table = console.table
+export const count = console.count
+export const group = console.group
+export const groupEnd = console.groupEnd
+export const assert = console.assert
