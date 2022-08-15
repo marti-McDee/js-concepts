@@ -1,51 +1,56 @@
-/**  Chapter 13: Asynchronous JavaScript  **/
+/***  Chapter 13: Asynchronous JavaScript  ***/
 
-const log = console.log
-const error = console.error
-const warn = console.warn
-const clear = console.clear
-
-const time = console.time
-const timeEnd = console.timeEnd
-
-const table = console.table
-const count = console.count
-
-const group = console.group
-const groupEnd = console.groupEnd
-
-const assert = console.assert
-
-/* Asynchronous Programming with Callbacks */
+// Using asynchronous JavaScript (such as callbacks, promises, and async/await), you can perform long network requests 
+// without blocking the main thread.
 
 
 
-/* Promises */
+/** 13.1 Asynchronous Programming with Callbacks **/
+const loadPokemon = (id, cb) => {
+  fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      cb(data)
+    })
+}
 
-const catFacts = fetch('https://cat-fact.herokuapp.com/facts')
-
-const event = new Promise((resolve, reject) => {
-  if(catFacts.ok) {
-    resolve(catFacts)
-  }
-  else {
-    reject("Cat facts not found")
-  }
-})
-
-event.
-then((facts) => {
-  log(facts)
-})
-.catch((err) => {
-  log(err)
+loadPokemon(56, (pokemon) => {
+  // console.log(pokemon)
 })
 
 
+/* Timers */
 
-/* Async/Await */
+// display name in the console after 4 seconds
+setTimeout((firstName) => {
+  // console.log(`My name is ${firstName}`)
+}, 4000, 'David')
+
+// this time name is displayed every second and the function is passed as a reference
+function displayName(firstName) {
+  // console.log(`My name is ${firstName}`)
+}
+
+// setInterval(displayName, 1000, 'David')
+
+// console.log a countdown from 10, with a space of 1 second between each number.
+function countDown(start, end) {
+  const timer = setInterval(() => {
+    // console.log(start--)
+    if (start < end) { clearInterval(timer) }
+  }, 1000)
+}
+
+countDown(10, 0)
+
+
+/* Events */
+const outer = document.querySelector('.outer')
+const inner = document.querySelector('.inner')
 
 
 
+/* Network Events */
 
-/* Asynchronous Iteration */
+
+/* Callbacks and Events in Node */
