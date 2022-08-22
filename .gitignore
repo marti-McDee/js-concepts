@@ -1,8 +1,8 @@
-build/
-dist/
-.parcel-cache/
+/build
+/dist
+.parcel-cache
 
-.vscode/
-node_modules/
+.vscode/*
+node_modules
 
 *.code-workspace
