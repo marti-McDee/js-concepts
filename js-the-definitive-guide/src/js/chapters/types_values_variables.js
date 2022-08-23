@@ -1,6 +1,5 @@
 /***  Chapter 3: Types, Values, and Variables ***/
 
-
 /** Overview and Definitions **/
 
 /* Map object */
@@ -15,7 +14,6 @@ let zebraCount = zoo.get('Zebras')
 for (let [key, value] of zoo) {
   console.log(`${key} : ${value}`)
 }
-
 
 /** Numbers **/
 
@@ -73,28 +71,24 @@ const float = 0.1 + 0.2
 const float2 = 1 / 10
 
 /* Arbitrary Precision Integers with BigInt */
-let bigMath = 1000000000000000n * 1000000000000n  // 10^27
+let bigMath = 1000000000000000n * 1000000000000n // 10^27
 
 let bigInt = BigInt(Number.MAX_SAFE_INTEGER)
 
-let str = "1" + "0".repeat(100)
+let str = '1' + '0'.repeat(100)
 str = BigInt(str)
 
 // comparison operators allow for mixed operad types
-console.log(
-  1 < 2n,
-  2 > 1n,
-  0 == 0n,
-  0 === 0n
-)
+console.log(1 < 2n, 2 > 1n, 0 == 0n, 0 === 0n)
 
 // none of the Math functions accept BigInt operands
-console.log(
+console
+  .log
   // Math.floor(Math.random() * 4n - 2n) // Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
-)
+  ()
 
 /* Dates and Times */
-let timestamp = Date.now()  // current time as the number of seconds that have passed since the Unix Epoch (Jan 1 1970)
+let timestamp = Date.now() // current time as the number of seconds that have passed since the Unix Epoch (Jan 1 1970)
 // console.log(timestamp)
 let now = new Date()
 // console.log(now)
@@ -102,7 +96,6 @@ let ms = now.getTime()
 // console.log(ms)
 let iso = now.toISOString()
 // console.log(iso)
-
 
 /** Text **/
 
@@ -123,17 +116,12 @@ console.log(literal)
 
 /* Escape Sequences in String Literals */
 for (let i = 0; i < 7; i++) {
-  console.log(`${i + 1}. Walkthrough of the for-loop\r`)  // carriage return yields same result as newline
+  console.log(`${i + 1}. Walkthrough of the for-loop\r`) // carriage return yields same result as newline
 }
 for (let i = 0; i < 7; i++) {
   console.log(`${i + 1}. Walkthrough of the for-loop\n`)
 }
 
 /* Working with Strings */
-let s = "Hello, world!"
-console.log(
-  s.substring(1,4),
-  s.slice(7, -1),
-  s.slice(-6),
-  s.split(', ')
-)
+let s = 'Hello, world!'
+console.log(s.substring(1, 4), s.slice(7, -1), s.slice(-6), s.split(', '))
