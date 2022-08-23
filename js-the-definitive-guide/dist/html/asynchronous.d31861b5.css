@@ -1,6 +1,6 @@
 *,
-body::before,
-body::after {
+body:before,
+body:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -19,8 +19,6 @@ body {
   width: 40rem;
   height: 40rem;
   background-color: #00f;
-
-  /* Center horizontally and vertically */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,8 +29,6 @@ body {
   width: 15rem;
   height: 15rem;
   background-color: #000;
-
-  /* Center horizontally and vertically inside the parent element */
   position: relative;
   top: 50%;
   left: 50%;
@@ -43,3 +39,5 @@ body {
   width: 8rem;
   height: 4.5rem;
 }
+
+/*# sourceMappingURL=asynchronous.d31861b5.css.map */
