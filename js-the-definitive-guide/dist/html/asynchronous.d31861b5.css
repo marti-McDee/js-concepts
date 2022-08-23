@@ -1,6 +1,4 @@
-*,
-body:before,
-body:after {
+*, body:before, body:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;

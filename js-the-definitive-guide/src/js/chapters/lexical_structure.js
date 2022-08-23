@@ -1,6 +1,6 @@
 /**  Chapter 2: Lexical Structure  **/
 
-/* Unicode */
+/** Unicode **/
 
 const señor = 'David'
 const señora = 'Maria'

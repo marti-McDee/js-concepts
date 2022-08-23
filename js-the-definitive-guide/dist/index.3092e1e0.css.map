@@ -1,1 +1,1 @@
-{"mappings":"AAAA;;;;AAIA","sources":["src/css/index.css"],"sourcesContent":["a {\n  text-decoration: none;\n}\n\nli {\n  padding: 0.3rem 0;\n}"],"names":[],"version":3,"file":"index.3092e1e0.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"AAAA;;;;AAIA","sources":["src/css/index.css"],"sourcesContent":["a {\n  text-decoration: none;\n}\n\nli {\n  padding: 0.3rem 0;\n}\n"],"names":[],"version":3,"file":"index.3092e1e0.css.map","sourceRoot":"/__parcel_source_root/"}
