@@ -1,5 +1,5 @@
-const myArray = ['San Antonio', 'Dallas', 'Arlington', 'Austin']
+const myArray = ["San Antonio", "Dallas", "Arlington", "Austin"];
 
-console.log(myArray)
+console.log(myArray);
 
-export default myArray
+export default myArray;

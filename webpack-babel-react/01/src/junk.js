@@ -1,5 +1,5 @@
-const turntArray = ['San Antonio', 'Seatlle', 'Chicago', 'Austin']
+const turntArray = ["San Antonio", "Seatlle", "Chicago", "Austin"];
 
-console.log(turntArray)
+console.log(turntArray);
 
-export default turntArray
+export default turntArray;
