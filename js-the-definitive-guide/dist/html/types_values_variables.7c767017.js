@@ -1,12 +1,13 @@
-/***  Chapter 3: Types, Values, and Variables ***/ /** Overview and Definitions **/ /* Map object */ let zoo = new Map();
+/***  Chapter 3: Types, Values, and Variables ***/ const exp = [];
+/** Overview and Definitions **/ /* Map object */ let zoo = new Map();
 zoo.set("Zebras", 5);
 zoo.set("Gorillas", 2);
 zoo.set("Monkeys", 75);
 let zebraCount = zoo.get("Zebras");
-for (let [key, value] of zoo)console.log(`${key} : ${value}`);
+for (let [key, value] of zoo);
 /** Numbers **/ /* Primitive coercion to object */ let num = 5;
 let temp = new Number(num);
-console.log(typeof temp.toString());
+// console.log(typeof temp.toString())
 temp = {};
 num = "5";
 /* Arithmetic in JavaScript */ const exponent = Math.pow(2, 3);
@@ -51,7 +52,7 @@ Number.isNaN(NaN) // true
 Number.isNaN(0) // false
 ;
 function checkIsNaN(arr) {
-    for(x in arr)console.info(arr[x] !== arr[x]);
+    for(x in arr);
 }
 checkIsNaN([
     undefined,
@@ -68,9 +69,8 @@ let bigInt = BigInt(Number.MAX_SAFE_INTEGER);
 let str = "1" + "0".repeat(100);
 str = BigInt(str);
 // comparison operators allow for mixed operad types
-console.log(1 < 2n, 2 > 1n, 0 == 0n, 0 === 0n);
+// console.log(1 < 2n, 2 > 1n, 0 == 0n, 0 === 0n)
 // none of the Math functions accept BigInt operands
-console.log();
 /* Dates and Times */ let timestamp = Date.now() // current time as the number of seconds that have passed since the Unix Epoch (Jan 1 1970)
 ;
 // console.log(timestamp)
@@ -86,15 +86,96 @@ let iso = now.toISOString();
     age: "52",
     address: "123 Sesame Street"
 };
-console.log(`${me.first} ${me.last} is ${me.age} years old and lives at ${me.address}`);
+// console.log(`${me.first} ${me.last} is ${me.age} years old and lives at ${me.address}`)
 const literal = `This is a very, very, very, very, very, very, very, very, very, very, \
 very, very, very, very, very, very, very, very, very, very, very, very, very, very,
 very, very, very, very, very long string literal \u{1f35c}`;
-console.log(literal);
-/* Escape Sequences in String Literals */ for(let i = 0; i < 7; i++)console.log(`${i + 1}. Walkthrough of the for-loop\r`) // carriage return yields same result as newline
-;
-for(let i1 = 0; i1 < 7; i1++)console.log(`${i1 + 1}. Walkthrough of the for-loop\n`);
+// console.log(literal)
+/* Escape Sequences in String Literals */ for(let i = 0; i < 7; i++);
+for(let i1 = 0; i1 < 7; i1++);
 /* Working with Strings */ let s = "Hello, world!";
-console.log(s.substring(1, 4), s.slice(7, -1), s.slice(-6), s.split(", "));
+// console.log(s.substring(1, 4), s.slice(7, -1), s.slice(-6), s.split(', '))
+// Searching a String
+// console.log(
+//   s.lastIndexOf('l'),
+//   s.lastIndexOf('z')
+// )
+// Boolean Searching Functions
+// console.log(
+//   s.startsWith('Hell'),
+//   s.endsWith('!'),
+//   s.includes('old')
+// )
+// Creating Modified Versions of a String
+exp.push(s.replace("o,", ""), s.toUpperCase());
+for(let i2 in exp);
+// Inspecting Individual 16-bit Characters of a String
+// console.log(
+//   s.charAt(0),
+//   s.charAt(s.length-1),
+//   s.charCodeAt(s.length-1),
+//   s.codePointAt(0)
+// )
+// String Padding Functions
+// console.log(
+//   s.padEnd(14, '-'),
+//   s.padStart(14)
+// )
+// Space trimming functions
+// console.log(
+//   " test ".trim(),
+//   " test".trimStart()
+// )
+// Misc String Methods
+console.log(s.concat("?"), s.concat("! ").repeat(3));
+/* Template Literals */ console.log(String.raw`\n`);
+/* Pattern Matching */ let text = "testing: 1,2,3";
+let pattern = /\d+/g;
+console.log(pattern.test(text));
+// position of first match
+console.log(text.search(pattern));
+// array of all matches
+console.log(text.match(pattern));
+console.log(text.replace(pattern, "#"));
+console.log(text.split(/\D+/) // split on nondigits
+);
+/** Boolean Values **/ /* 
+The following values convert to falsy:
+
+undefined
+null
+0
+-0
+NaN
+""
+*/ console.log(`${false}`.toString());
+/** Null and Undefined **/ console.log(true);
+/** Symbols **/ let id1 = Symbol("id");
+let id2 = Symbol("id");
+console.log(id1 === id2);
+// alert(id1.toString())
+let user = {
+    name: "John",
+    [id1]: 124,
+    wearsGlasses: true
+};
+for(let key1 in user)console.log(key1);
+let score = Symbol.for("score");
+let score2 = Symbol.for("score");
+console.log(score == score2);
+let sym1 = Symbol.for("name");
+let sym2 = Symbol.for("number");
+console.log(Symbol.keyFor(sym1));
+console.log(Symbol.keyFor(sym2));
+let strname = "string name";
+let symname = Symbol("propname");
+console.log(typeof strname, typeof symname);
+let o = {};
+o[strname] = 1;
+o[symname] = 2;
+console.log(o[strname], o[symname]);
+let sym = Symbol.for("shared");
+let t = Symbol.for("shared");
+console.log(sym === t, sym.toString(), Symbol.keyFor(t));
 
 //# sourceMappingURL=types_values_variables.7c767017.js.map

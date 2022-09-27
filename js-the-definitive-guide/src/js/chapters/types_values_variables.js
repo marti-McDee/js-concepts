@@ -1,4 +1,5 @@
 /***  Chapter 3: Types, Values, and Variables ***/
+const exp = []
 
 /** Overview and Definitions **/
 
@@ -12,7 +13,7 @@ zoo.set('Monkeys', 75)
 let zebraCount = zoo.get('Zebras')
 
 for (let [key, value] of zoo) {
-  console.log(`${key} : ${value}`)
+  // console.log(`${key} : ${value}`)
 }
 
 /** Numbers **/
@@ -20,7 +21,7 @@ for (let [key, value] of zoo) {
 /* Primitive coercion to object */
 let num = 5
 let temp = new Number(num)
-console.log(typeof temp.toString())
+// console.log(typeof temp.toString())
 temp = {}
 num = '5'
 
@@ -60,7 +61,7 @@ Number.isNaN(0) // false
 
 function checkIsNaN(arr) {
   for (x in arr) {
-    console.info(arr[x] !== arr[x])
+    // console.info(arr[x] !== arr[x])
   }
 }
 
@@ -79,13 +80,9 @@ let str = '1' + '0'.repeat(100)
 str = BigInt(str)
 
 // comparison operators allow for mixed operad types
-console.log(1 < 2n, 2 > 1n, 0 == 0n, 0 === 0n)
+// console.log(1 < 2n, 2 > 1n, 0 == 0n, 0 === 0n)
 
 // none of the Math functions accept BigInt operands
-console
-  .log
-  // Math.floor(Math.random() * 4n - 2n) // Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
-  ()
 
 /* Dates and Times */
 let timestamp = Date.now() // current time as the number of seconds that have passed since the Unix Epoch (Jan 1 1970)
@@ -107,21 +104,176 @@ const me = {
   address: '123 Sesame Street'
 }
 
-console.log(`${me.first} ${me.last} is ${me.age} years old and lives at ${me.address}`)
+// console.log(`${me.first} ${me.last} is ${me.age} years old and lives at ${me.address}`)
 
 const literal = `This is a very, very, very, very, very, very, very, very, very, very, \
 very, very, very, very, very, very, very, very, very, very, very, very, very, very,
 very, very, very, very, very long string literal \u{1f35c}`
-console.log(literal)
+// console.log(literal)
 
 /* Escape Sequences in String Literals */
 for (let i = 0; i < 7; i++) {
-  console.log(`${i + 1}. Walkthrough of the for-loop\r`) // carriage return yields same result as newline
+  // console.log(`${i + 1}. Walkthrough of the for-loop\r`) // carriage return yields same result as newline
 }
 for (let i = 0; i < 7; i++) {
-  console.log(`${i + 1}. Walkthrough of the for-loop\n`)
+  // console.log(`${i + 1}. Walkthrough of the for-loop\n`)
 }
 
 /* Working with Strings */
 let s = 'Hello, world!'
-console.log(s.substring(1, 4), s.slice(7, -1), s.slice(-6), s.split(', '))
+// console.log(s.substring(1, 4), s.slice(7, -1), s.slice(-6), s.split(', '))
+
+// Searching a String
+// console.log(
+//   s.lastIndexOf('l'),
+//   s.lastIndexOf('z')
+// )
+
+// Boolean Searching Functions
+// console.log(
+//   s.startsWith('Hell'),
+//   s.endsWith('!'),
+//   s.includes('old')
+// )
+
+// Creating Modified Versions of a String
+exp.push(
+  s.replace('o,', ''),
+  s.toUpperCase(),
+)
+
+for(let i in exp) {
+  // console.log(exp[i])
+}
+
+// Inspecting Individual 16-bit Characters of a String
+// console.log(
+//   s.charAt(0),
+//   s.charAt(s.length-1),
+//   s.charCodeAt(s.length-1),
+//   s.codePointAt(0)
+// )
+
+// String Padding Functions
+// console.log(
+//   s.padEnd(14, '-'),
+//   s.padStart(14)
+// )
+
+// Space trimming functions
+// console.log(
+//   " test ".trim(),
+//   " test".trimStart()
+// )
+
+// Misc String Methods
+console.log(
+  s.concat('?'),
+  s.concat('! ').repeat(3)
+)
+
+
+/* Template Literals */
+console.log(
+  String.raw`\n`,
+)
+
+
+/* Pattern Matching */
+let text = "testing: 1,2,3"
+let pattern = /\d+/g
+console.log(pattern.test(text))
+
+// position of first match
+console.log(
+  text.search(pattern)
+)
+
+// array of all matches
+console.log(
+  text.match(pattern)
+)
+
+console.log(
+  text.replace(pattern, '#')
+)
+
+console.log(
+  text.split(/\D+/) // split on nondigits
+)
+
+
+/** Boolean Values **/
+
+/* 
+The following values convert to falsy:
+
+undefined
+null
+0
+-0
+NaN
+""
+*/
+
+console.log(`${3 === 4}`.toString())
+
+
+
+/** Null and Undefined **/
+console.log(null == undefined)
+
+
+/** Symbols **/
+let id1 = Symbol('id')
+let id2 = Symbol('id')
+
+console.log(id1 === id2)
+// alert(id1.toString())
+
+let user = {
+  name: 'John',
+  [id1]: 124,
+  wearsGlasses: true
+}
+
+for (let key in user){
+  console.log(key)
+}
+
+let score = Symbol.for('score')
+let score2 = Symbol.for('score')
+
+console.log(score == score2)
+
+let sym1 = Symbol.for('name')
+let sym2 = Symbol.for('number')
+
+console.log(Symbol.keyFor(sym1))
+console.log(Symbol.keyFor(sym2))
+
+let strname = 'string name'
+let symname = Symbol('propname')
+
+console.log(
+  typeof strname, typeof symname
+)
+
+let o = {}
+o[strname] = 1
+o[symname] = 2
+
+console.log(
+  o[strname],
+  o[symname],
+)
+
+
+let sym = Symbol.for('shared')
+let t = Symbol.for('shared')
+
+console.log(
+  sym === t,
+  sym.toString(),
+  Symbol.keyFor(t)
+)
