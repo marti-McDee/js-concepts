@@ -225,6 +225,7 @@ console.log(null == undefined)
 
 
 /** Symbols **/
+// unique identifiers, immutable
 let id1 = Symbol('id')
 let id2 = Symbol('id')
 
@@ -277,3 +278,26 @@ console.log(
   sym.toString(),
   Symbol.keyFor(t)
 )
+
+let myUniqueSymbol = Symbol("Rubber Ducky")
+console.log(myUniqueSymbol.description)
+
+let myFirstSymbol = Symbol()
+console.log(myFirstSymbol.description)
+
+// Symbols will not implicitly convert to a String
+let mySecondSymbol = Symbol.for('My unique symbol')
+console.log(Symbol.keyFor(mySecondSymbol))
+try {
+  let myThirdSymbol = Symbol.for("My unique symbol")
+  console.log(`Symbol: ${mySecondSymbol.toString()}`)
+} catch(e) {
+  console.log(e)
+}
+
+try {
+  alert(mySecondSymbol) 
+} catch(e) {
+  console.log(`The following error occured: \n${e}`)
+}
+// alert(mySecondSymbol.description.toString())
