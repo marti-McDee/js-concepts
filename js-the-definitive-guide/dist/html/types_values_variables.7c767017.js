@@ -196,5 +196,6 @@ try {
 } catch (e2) {
     console.log(`The following error occured: \n${e2}`);
 } // alert(mySecondSymbol.description.toString())
+ /** The Global Object **/ 
 
 //# sourceMappingURL=types_values_variables.7c767017.js.map

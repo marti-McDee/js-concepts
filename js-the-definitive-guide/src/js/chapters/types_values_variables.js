@@ -301,3 +301,6 @@ try {
   console.log(`The following error occured: \n${e}`)
 }
 // alert(mySecondSymbol.description.toString())
+
+
+/** The Global Object **/
