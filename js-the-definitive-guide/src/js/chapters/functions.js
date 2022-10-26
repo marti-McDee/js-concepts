@@ -1,4 +1,4 @@
-// practiced defining functions; invoking functions; function args and params; functions as values; functions as namespaces; closures; function properties, methods, and constructor; functional programming; 
+// Chapter 8: Functions
 
 "use strict"
 
@@ -7,7 +7,7 @@
 // print the name and value of each property of o. Return undefined
 function printProps(o) {
   for (p in o) {
-    console.log(`${p}: ${o[p]}\n`)
+    // console.log(`${p}: ${o[p]}\n`)
   }
 }
 
@@ -34,15 +34,15 @@ var y = 40
 
 // defining function within block scope
 function Foo() {
-  console.log(candy); // undefined
+  // console.log(candy); // undefined
   if (true) {
     var candy = function () {
-      console.log(9);
+      // console.log(9);
     }
     candy();
   }
 
-  console.log(candy);
+  // console.log(candy);
   candy();
 }
 
@@ -84,4 +84,38 @@ function highOnPotenuse(a, b) {
   return Math.sqrt(square(a) + square(b))
 }
 
-console.log(highOnPotenuse(3, 4))
+// console.log(highOnPotenuse(3, 4))
+
+
+/** Invoking Functions **/
+
+/* Function Invocation */
+const sum1 = (x, y) => {
+}
+
+const x1 = 4, x2 = 5, y1 = 7, y2 = 3
+// console.log(sum1?.(x1 + x2, y1 + y2))
+
+const strict = (function () { return !this }())
+// console.log(`strict mode: ${strict}`)
+
+
+/* Method Invocation */
+const calculator = {
+  operand1: 1,
+  operand2: 2,
+  add() {
+    this.result = this.operand1 + this.operand2
+  }
+}
+
+calculator.add()
+// console.log(calculator.result)
+
+calculator.operand1 = 15
+calculator.add()
+// console.log(typeof calculator.result.toString().toUpperCase())
+// console.log(typeof calculator.result)
+
+// setRectSize(rect, width, height)
+rect.setSize(width, height)
