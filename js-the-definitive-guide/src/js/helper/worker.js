@@ -1,5 +1,5 @@
 /* 
-* Web worker threads have a different global object than the Window with which they are associated. code in a woker can 
+* Web worker threads have a different global object than the Window with which they are associated. code in a worker can 
 * refer to its global object as 'self'.
 * 
 * ES2020 defines 'globalThis' as the standard way to refer to the global object in any context.
