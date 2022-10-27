@@ -1,6 +1,6 @@
 // Chapter 8: Functions
 
-"use strict"
+// "use strict"
 
 /* Function Declarations */
 
@@ -117,5 +117,58 @@ calculator.add()
 // console.log(typeof calculator.result.toString().toUpperCase())
 // console.log(typeof calculator.result)
 
-// setRectSize(rect, width, height)
-rect.setSize(width, height)
+// 'this' value of f() method is the global object or undefined
+let o = {
+  m: function () {
+    let self = this
+    this === o // => "true"
+    return f()
+
+    function f() {
+      this === o // "false": 'this' is global or undefined
+      self === 0 // "true": self is the outer 'this' value
+      return this
+    }
+  }
+}
+
+// console.log(o.m())
+
+// 'this' value of f() method is the value of 'this' outside the object
+// the inheritance goes all the way down
+let obj4 = {
+  m: function () {
+    let self = this
+    console.log(this === obj4)  // true 
+
+    const f = () => {
+      console.log(this === obj4)  // true
+
+      const g = () => {
+        console.log(this === obj4)  // true
+
+        const h = () => {
+          console.log(this === obj4)  // true
+        }
+        h()
+      }
+      g()
+    }
+    // function implicity invoked on this object
+    const bound = (function () {
+      console.log(`bound func: ${obj4 === this}`)
+    }).bind(this)
+
+    f()
+    bound()
+  }
+}
+
+obj4.m()
+
+
+/* Constructor Invocation */
+
+// you can omit pair of empty parenthesis in constructor invocations
+obj5 = new Object() // 'var' is assumed if keyword not specified
+obj6 = new Object
