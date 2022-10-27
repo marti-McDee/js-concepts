@@ -182,7 +182,7 @@ for (let i in exp) {
 /* Pattern Matching */
 let text = "testing: 1,2,3"
 let pattern = /\d+/g
-console.log(pattern.test(text))
+// console.log(pattern.test(text))
 
 // position of first match
 // console.log(
@@ -400,3 +400,57 @@ obj5.y = 5
 
 
 /** Type Conversions  **/
+
+// let age = window.prompt("How old are you?")
+// console.log('Happy Birthday! You are', ++age, 'years old.')
+const arr3 = ['h', 'e', 'l', 'l', 'o']
+// console.log(arr3.join(''))
+
+function funFunc() {
+  return "let's have some func!"
+}
+
+// console.log(funFunc().toString())
+
+// console.log(null) // TypeError: Cannot read properties of null (reading 'toString')
+// console.log(String(null))
+// console.log(undefined.toString()) // TypeError: Cannot read properties of undefined (reading 'toString')
+// console.log(String(undefined))
+
+
+/* Explicit Conversions */
+const age1 = "22"
+const numAge = Number(age1)
+// console.log(typeof age1, typeof numAge)
+
+const n = 26
+const binary = "0b" + n.toString(2)
+const octal = "0o" + n.toString(8)
+const hex = "0x" + n.toString(16)
+const binary1 = "0b" + (11).toString(2)
+// console.log(binary1)
+// console.log(
+//   `binary: ${binary}`,
+//   `octal: ${octal}`,
+//   `hex: ${hex}`
+// )
+
+// controlling the number of decimal places and number significant digits in the output
+let num3 = 123456.789
+num3.toFixed(0) // => "1234567"
+num3.toFixed(2) // => "123456.79"
+num3.toExponential(3) // => "1.235e+5"
+num3.toPrecision(7) // => "123456.8"
+num3.toPrecision(10) // => "123456.7890"
+
+// parseInt() and parseFloat() are more flexible than the Number() conversion function
+parseInt("3 blind mice") // => "3"
+parseInt("-12.34") // => "-12"
+parseInt("0xFF") // => "255"
+parseFloat(".1") // => "0.1"
+
+// parseInt() accepts a second argument for radix
+const decimal = parseInt("ff", 16)
+console.log(decimal)
+const oct = parseInt("077", 8)
+console.log(oct)
