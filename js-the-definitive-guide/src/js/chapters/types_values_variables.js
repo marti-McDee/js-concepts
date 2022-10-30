@@ -391,7 +391,7 @@ function isObject(object) {
   return object != null && typeof object === 'object';
 }
 
-const obj4 = { x: 4, y: 5 }
+const obj4 = { x: 2, y: 5 }
 const obj5 = { x: 4 }
 // console.log(isEqual(obj4, obj5))
 
@@ -451,6 +451,31 @@ parseFloat(".1") // => "0.1"
 
 // parseInt() accepts a second argument for radix
 const decimal = parseInt("ff", 16)
-console.log(decimal)
+// console.log(decimal)
 const oct = parseInt("077", 8)
-console.log(oct)
+// console.log(oct)
+
+
+/* Object to Primitive Conversion */
+let obj7 = { x: 1, y: 2, z: 3 }
+let obj8 = { a: 20, b: 30, c: 40 }
+
+// console.log(obj7 - obj8) // NaN
+// console.log(obj7 + obj8) // [object Object][object Object]
+
+// merge two objects
+const mergedObj = {
+  ...obj7,
+  ...obj8
+}
+
+// console.log(mergedObj)
+
+// another way to merge objects
+const mergedObj2 = Object.assign(obj7, obj8, obj5, obj4)
+// console.log(mergedObj2)
+
+const num4 = Number([98, 99, 100])
+console.log(num4)
+console.log(Number([])) // 0
+console.log(Number(['99'])) // 99
