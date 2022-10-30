@@ -1,6 +1,6 @@
 // Chapter 8: Functions
 
-// "use strict"
+"use strict"
 
 /* Function Declarations */
 
@@ -139,16 +139,16 @@ let o = {
 let obj4 = {
   m: function () {
     let self = this
-    console.log(this === obj4)  // true 
+    // console.log(this === obj4)  // true 
 
     const f = () => {
-      console.log(this === obj4)  // true
+      // console.log(this === obj4)  // true
 
       const g = () => {
-        console.log(this === obj4)  // true
+        // console.log(this === obj4)  // true
 
         const h = () => {
-          console.log(this === obj4)  // true
+          // console.log(this === obj4)  // true
         }
         h()
       }
@@ -156,7 +156,7 @@ let obj4 = {
     }
     // function implicity invoked on this object
     const bound = (function () {
-      console.log(`bound func: ${obj4 === this}`)
+      // console.log(`bound func: ${obj4 === this}`)
     }).bind(this)
 
     f()
@@ -170,5 +170,39 @@ obj4.m()
 /* Constructor Invocation */
 
 // you can omit pair of empty parenthesis in constructor invocations
-obj5 = new Object() // 'var' is assumed if keyword not specified
-obj6 = new Object
+const obj5 = new Object() // 'var' is assumed if keyword not specified (in non-strict mode)
+const obj6 = new Object  // strict mode requires a declaration with let, const, or var
+
+
+/* Implicit Function Invocation */
+const person = {
+  name: 'David',
+  getName: function(){
+    // console.log(this)
+
+    ;(() =>{
+      // console.log('inner func', this)
+    })()
+    
+  }
+}
+
+const personName = person.getName
+personName()
+
+const highlight = (strings, ...values) => {
+  let str = ''
+  strings.forEach((string, i) => {
+    str += string + (values[i] || '')
+  });
+
+  return str
+}
+
+const noun = 'breath'
+const noun2 = 'cat food'
+const sentence = highlight`My cat's ${noun} smells like ${noun2}.`
+console.log(sentence)
+
+
+/** Function Arguments and Parameters **/
