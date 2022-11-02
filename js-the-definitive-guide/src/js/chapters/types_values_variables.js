@@ -306,18 +306,18 @@ try {
 /** The Global Object **/
 
 /* Web Workers */
-const worker = new Worker(new URL('../helper/worker.js', import.meta.url))
+// const worker = new Worker(new URL('../helper/worker.js', import.meta.url))
 const sumButton = document.getElementById('sumButton')
 const bgButton = document.getElementById('bgButton')
 
 sumButton.addEventListener('click', (e) => {
-  worker.postMessage('hello, worker')
+  // worker.postMessage('hello, worker')
   // alert(`The final sum is ${sum}`)
 })
 
-worker.onmessage = (msg) => {
-  alert(msg.data)
-}
+// worker.onmessage = (msg) => {
+//   alert(msg.data)
+// }
 
 bgButton.addEventListener('click', (e) => {
   if (document.body.style.background !== 'green')
@@ -476,6 +476,17 @@ const mergedObj2 = Object.assign(obj7, obj8, obj5, obj4)
 // console.log(mergedObj2)
 
 const num4 = Number([98, 99, 100])
-console.log(num4)
-console.log(Number([])) // 0
-console.log(Number(['99'])) // 99
+// console.log(num4)
+// console.log(Number([])) // 0
+// console.log(Number(['99'])) // 99
+
+
+/** Variable Declaration and Assignment **/
+const x51 = 'father'
+let x52 = 'son of X-51'
+
+var newNum = 53
+console.log(newNum)
+
+var newNum = 65
+console.log(newNum)
