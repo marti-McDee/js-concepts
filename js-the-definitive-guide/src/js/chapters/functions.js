@@ -170,20 +170,20 @@ obj4.m()
 /* Constructor Invocation */
 
 // you can omit pair of empty parenthesis in constructor invocations
-const obj5 = new Object() // 'var' is assumed if keyword not specified (in non-strict mode)
+const obj5 = new Object() // a new global variable is created if keyword not specified (in non-strict mode)
 const obj6 = new Object  // strict mode requires a declaration with let, const, or var
 
 
 /* Implicit Function Invocation */
 const person = {
   name: 'David',
-  getName: function(){
+  getName: function () {
     // console.log(this)
 
-    ;(() =>{
+    ; (() => {
       // console.log('inner func', this)
     })()
-    
+
   }
 }
 
@@ -202,7 +202,41 @@ const highlight = (strings, ...values) => {
 const noun = 'breath'
 const noun2 = 'cat food'
 const sentence = highlight`My cat's ${noun} smells like ${noun2}.`
-console.log(sentence)
+// console.log(sentence)
 
 
 /** Function Arguments and Parameters **/
+
+/* Optional Parameters and Defaults */
+
+// When a function is invoked with fewer args than declared params, the additional params are set to their
+// default values ('undefined' - unless otherwise specified)
+
+function getPropertyNames(o, a) {
+  a = a || []
+  for (let property in o) a.push(property)
+  return a
+}
+
+let obj7 = { x: 1 }, p = { y: 2, z: 3 }
+let a = getPropertyNames(obj7)
+// console.log(getPropertyNames(p, a))
+
+// for functions with multiple params, you can use the value of a previous param to define the default value
+// of params that follow it
+const rectangle = (width, height = width * 2) => ({ width, height })
+// console.log(rectangle(3))
+
+
+/* Rest Parameters and Variable Length Arguments */
+function max(first = -Infinity, ...rest) {
+  let maxValue = first  // start by assuming the first arg is the largest
+
+  for (let n of rest) {
+    if (n > maxValue) maxValue = n
+  }
+
+  return maxValue
+}
+
+console.log(max(1, 10, 20, 350, 9, 37, 351, 5))
