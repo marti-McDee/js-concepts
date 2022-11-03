@@ -486,7 +486,43 @@ const x51 = 'father'
 let x52 = 'son of X-51'
 
 var newNum = 53
-console.log(newNum)
+// console.log(newNum)
 
 var newNum = 65
-console.log(newNum)
+// console.log(newNum)
+
+/* Destructuring Assignment */
+let [cc, dd] = [1, 3] // let c = 1, d = 3
+  ;[cc, dd] = [dd, cc]
+console.log(cc, dd)
+
+let obj9 = { x: 1, y: 2 }
+for (const [name, value] of Object.entries(obj9)) {
+  console.log(`${name}: ${value}`)
+}
+
+// extra commas used to skip values
+[, x, , y] = [1, 2, 3, 4] // x = 2, y = 4
+console.log(x, y)
+
+// array destructuring
+let [first, ...rest] = "Hello"  // first = 'H'; rest = ['e', 'l', 'l', 'o']
+console.log(first, rest)
+
+// object destructuring
+let transparent = { r: 0.0, g: 0.0, b3: 0.0, a: 1.0 }
+let { r, g, b3 } = transparent  // r = 0.0, g = 0.0, b3 = 0.0
+
+// simplifying code that involves much trigonometry
+const obj10 = { cos: cosine, tan: tangent } = Math
+console.log(obj10)
+
+// destructuring an array of objects
+let points = [{ x: 1, y: 2 }, { x: 3, y: 4 }]
+let [{ x: x1, y: y1 }, { x: x2, y: y2 }] = points
+console.log(x1 === 1 && y1 === 2 && x2 === 3 && y2 === 4)
+
+// destructuring an object of arrays
+let points1 = { p1: [1, 2], p2: [3, 4] }
+let { p1: [x11, y11], p2: [x22, y22] } = points1
+console.log(x11 === 1 && y11 === 2 && x22 === 3 && y22 === 4)
