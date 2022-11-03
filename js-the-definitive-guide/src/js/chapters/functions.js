@@ -239,4 +239,20 @@ function max(first = -Infinity, ...rest) {
   return maxValue
 }
 
+// console.log(max(1, 10, 20, 350, 9, 37, 351, 5))
+
+/* The Arguments Object */
+
+// used before es6, in place of the ...rest param
+function max(x) {
+  let maxValue = -Infinity
+
+  // loop through the args, looking for, and storing the largest
+  for (let i = 0; i < arguments.length; i++) {
+    if (arguments[i] > maxValue) maxValue = arguments[i]
+  }
+
+  return maxValue
+}
+
 console.log(max(1, 10, 20, 350, 9, 37, 351, 5))
