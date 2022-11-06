@@ -255,4 +255,75 @@ function max(x) {
   return maxValue
 }
 
-console.log(max(1, 10, 20, 350, 9, 37, 351, 5))
+// console.log(max(1, 10, 20, 350, 9, 37, 351, 5))
+
+
+/*  The Spread Operator for Function Calls */
+let numbers = [5, 2, 10, -1, 9, 100, 1]
+Math.min(...numbers)  // => -1
+
+const arr7 = [2, 4, 6, 8]
+// console.log([1, 3, [...arr7], 5, 7])
+
+// This function takes a function and returns a wrapped version (for testing)
+function timed(f) {
+  return function (...args) {
+    // console.log(`Entering function ${f.name}...`)
+    let startTime = Date.now()
+    try {
+      // Pass all of our args to the wrapped function
+      return f(...args)
+    } finally {
+      // print elapsed time
+      // console.log(`Exiting ${f.name} after ${Date.now() - startTime}ms`)
+    }
+  }
+}
+
+// Compute the sum of the numbers between 1 and n by brute force
+function benchmark(n) {
+  let sum = 0
+  for (let i = 1; i <= n; i++) {
+    sum += i
+  }
+
+  return sum
+}
+
+// Now invoke the timed version of the test func
+timed(benchmark)(1000000)
+
+
+/* Destructuring Function Arguments Into Parameters */
+
+// Add two vectors
+function vectorAdd([x1, y1], [x2, y2]) {
+  return [x1 + x2, y1 + y2]
+}
+
+// console.log(vectorAdd([1, 2], [3, 4]))
+
+// Destructuring the params of an object
+
+// Multiply the vector [x, y] by a scalar value
+function vectorMultiply({ x, y }, scalar) {
+  return { x: x * scalar, y: y * scalar }
+}
+
+console.log(vectorMultiply({ x: 1, y: 2 }, 2))
+
+function arrayCopy({ from, to = from, n = from.length, fromIndex = 0, toIndex = 0 }) {
+  let valuesToCopy = from.slice(fromIndex, fromIndex + n)
+  to.splice(toIndex, 0, ...valuesToCopy)
+  return to
+}
+
+let a1 = [1, 2, 3, 4, 5], b1 = [9, 8, 7, 6, 5]
+console.log(arrayCopy({ from: a1, n: 3, to: b1, toIndex: 4 }))
+
+// Multiply the vector {x,y} or {x,y,z} by a scalar value, retain other props
+function vectorMultiply1({ x, y, z = 0, ...props }, scalar) {
+  return { x: x * scalar, y: y * scalar, z: z * scalar, ...props }
+}
+
+console.log(vectorMultiply1({ x: 1, y: 2, w: -1 }, 2))
