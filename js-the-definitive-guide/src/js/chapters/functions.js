@@ -310,7 +310,7 @@ function vectorMultiply({ x, y }, scalar) {
   return { x: x * scalar, y: y * scalar }
 }
 
-console.log(vectorMultiply({ x: 1, y: 2 }, 2))
+// console.log(vectorMultiply({ x: 1, y: 2 }, 2))
 
 function arrayCopy({ from, to = from, n = from.length, fromIndex = 0, toIndex = 0 }) {
   let valuesToCopy = from.slice(fromIndex, fromIndex + n)
@@ -319,11 +319,82 @@ function arrayCopy({ from, to = from, n = from.length, fromIndex = 0, toIndex = 
 }
 
 let a1 = [1, 2, 3, 4, 5], b1 = [9, 8, 7, 6, 5]
-console.log(arrayCopy({ from: a1, n: 3, to: b1, toIndex: 4 }))
+// console.log(arrayCopy({ from: a1, n: 3, to: b1, toIndex: 4 }))
 
 // Multiply the vector {x,y} or {x,y,z} by a scalar value, retain other props
 function vectorMultiply1({ x, y, z = 0, ...props }, scalar) {
   return { x: x * scalar, y: y * scalar, z: z * scalar, ...props }
 }
 
-console.log(vectorMultiply1({ x: 1, y: 2, w: -1 }, 2))
+// console.log(vectorMultiply1({ x: 1, y: 2, w: -1 }, 2))
+
+
+/* Argument Types */
+
+// Performing Type Checking
+
+// return the sum of the elements an iterable object 'a', the elements of 'a' must all be numbers.
+function sum2(a) {
+  let total = 0
+  for (let element of a) {
+    if (typeof element !== "number") {
+      throw new TypeError("sum(): elements must be numbers")
+    }
+    total += element
+  }
+
+  return total
+}
+
+console.log(
+  sum2([1, 2, 3]),
+  // sum2(1, 2, 3),
+  // sum2([1, "a", 3])
+)
+
+
+/** Functions As Values **/
+
+// Example 8-1: Using functions as data
+function add(x, y) { return x + y }
+function subtract(x, y) { return x - y }
+function multiply(x, y, ...rest) {
+  if (y == null) return x
+  if (!rest.length) { return x * y }
+
+  let z = 1
+  rest.forEach(num => z *= num)
+
+  return x * y * z
+}
+
+function divide(x, y) { return x / y }
+
+const funcArr = [add, subtract, multiply, divide]
+console.log(funcArr.sort())
+
+console.log(
+  multiply(4)
+)
+
+const operators = {
+  add: (x, y) => x + y,
+  subtract: (x, y) => x - y,
+  multiply: (x, y) => x * y,
+  divide: (x, y) => x / y,
+  pow: Math.pow
+}
+
+// This function takes the name of an operator, looks up that operator in the object, and then invokes it on the
+// supplied operands.
+function operate2(operation, operand1, operand2) {
+  if (typeof operators[operation] === "function") {
+    return operators[operation](operand1, operand2)
+  }
+  else throw "unknown operator"
+}
+
+console.log(
+  operate2("add", "hello", operate2("add", " ", "world")), '\n',
+  operate2("pow", 10, 2),
+)
