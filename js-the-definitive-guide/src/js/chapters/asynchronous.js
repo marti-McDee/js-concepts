@@ -3,7 +3,7 @@
 /* Using asynchronous JavaScript (such as cbs, promises, and async/await), you can perform long network requests
  without blocking the main thread. */
 
-/** 13.1 Asynchronous Programming with cbs **/
+/** 13.1 Asynchronous Programming with Callbacks **/
 
 /* Timers */
 
@@ -92,25 +92,26 @@ let options = {
 }
 
 // Read a config file, then call the cb function
-fs.readFile("../helper/config.json", "utf-8", (err, text) => {
-  if(err){
-    // display a warning, but continue
-    console.warn("Could not read config file: ", err)
-  } else {
-    // parse the file contents and assign to the options object
-    Object.assign(options, JSON.parse(text))
-  }
+// fs.readFile("../helper/config.json", "utf-8", (err, text) => {
+//   if(err){
+//     // display a warning, but continue
+//     console.warn("Could not read config file: ", err)
+//   } else {
+//     // parse the file contents and assign to the options object
+//     Object.assign(options, JSON.parse(text))
+//   }
 
-  // start running the program
-  // startProgram(options)
-})
+//   // start running the program
+//   // startProgram(options)
+// })
 
 // make an http request for the contents of a URL in node
 // Node uses an on() method to register event listeners, insted of addEventListener()
 const https = require("https")
+const { resolve } = require('path')
 
 // Read the text content of the URL and asynchronously pass it to the cb
-function getText(url, cb){
+function getText(url, cb) {
   // Start an http GET request for the URL
   request = https.get(url)
 
@@ -129,7 +130,7 @@ function getText(url, cb){
 
     // This event handler is called when the response is complete
     response.on("end", () => {
-      if(httpStatus === 200) cb(null, body)
+      if (httpStatus === 200) cb(null, body)
       else cb(httpStatus, null)
     })
   })
@@ -137,3 +138,72 @@ function getText(url, cb){
   // We also register an event handler for the lower-level network errors
   request.on("error", (err) => cb(err, null))
 }
+
+
+/** Promises **/
+let p = new Promise((resolve, reject) => {
+  let a = 1 + 1
+  if (a == 3) {
+    resolve('Success')
+  }
+  else {
+    reject('Failed')
+  }
+})
+
+p.then((msg) => {
+  // console.log(`This is in the then: ${msg}`)
+}).catch((msg) => {
+  // console.log(`This is in the catch: ${msg}`)
+})
+
+const userLeft = false
+const userWatchingCatMeme = false
+
+// function watchTutorialCallback(cb, errorCb) {
+//   if (userLeft) {
+//     errorCb({
+//       name: 'User left',
+//       msg: ':('
+//     })
+
+//   } else if (userWatchingCatMeme) {
+//     errorCb({
+//       name: 'User Watching Cat meme',
+//       msg: 'MyTutorial < Cats'
+//     })
+//   } else {
+//     cb('Like and subscribe')
+//   }
+// }
+
+// watchTutorialCallback((msg) => {
+//   console.log('Success: ' + msg)
+// }, (err) =>{
+//   console.log(`${err.name} ${err.msg}`)
+// })
+
+function watchTutorialPromise() {
+  return new Promise((resolve, reject) => {
+    if (userLeft) {
+      reject({
+        name: 'User left',
+        msg: ':('
+      })
+
+    } else if (userWatchingCatMeme) {
+      reject({
+        name: 'User Watching Cat meme',
+        msg: 'MyTutorial < Cats'
+      })
+    } else {
+      resolve('Like and subscribe')
+    }
+  })
+}
+
+watchTutorialPromise().then((msg) => {
+  console.log('Success: ' + msg)
+}).catch((err) => {
+  console.log(`${err.name} ${err.msg}`)
+})
