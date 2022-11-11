@@ -1,6 +1,6 @@
 // Chapter 8: Functions
 
-"use strict"
+// "use strict"
 
 /* Function Declarations */
 
@@ -397,4 +397,36 @@ function operate2(operation, operand1, operand2) {
 console.log(
   operate2("add", "hello", operate2("add", " ", "world")), '\n',
   operate2("pow", 10, 2),
+)
+
+
+/** Defining Your Own Function Properties **/
+uniqueInteger.counter = 0
+
+// This function returns a different integer each time it is called
+// It uses a property of itself to remember the next value to be returned
+function uniqueInteger() {
+  return uniqueInteger.counter++
+}
+
+console.log(uniqueInteger())
+console.log(uniqueInteger())
+
+// Compute factorials and cache results as properties of the function itself
+function Factorial1(n) {
+  if(Number.isInteger(n) && n > 0) {
+    if(!(n in Factorial1)) {
+      Factorial1[n] = n * Factorial1(n-1)
+    }
+
+    return Factorial1[n]
+  } else {
+    return NaN
+  }
+}
+
+console.log(
+  Factorial1[1] = 1,
+  Factorial1(6),
+  Factorial1[5]
 )
