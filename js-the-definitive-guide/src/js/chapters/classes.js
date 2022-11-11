@@ -14,7 +14,7 @@ function range(from, to) {
   // These are noninherited properties that are unique to this object.
   r.from = from;
   r.to = to;
-
+  // console.log(new.target)
   // Finally return the new object
   return r;
 }
@@ -28,9 +28,44 @@ range.methods = {
   // A generator function that makes instances of the class iterable.
   // Note that it only works for numeric ranges.
   *[Symbol.iterator]() {
-      for(let x = Math.ceil(this.from); x <= this.to; x++) yield x;
+    for (let x = Math.ceil(this.from); x <= this.to; x++) yield x;
   },
 
   // Return a string representation of the range
   toString() { return "(" + this.from + "..." + this.to + ")"; }
 };
+
+let r1 = range(1,3)
+
+
+/*** Classes and Constructors ***/
+
+// A Constructor function that initializes new range objects
+function Range(from, to) {
+  this.from = from
+  this.to = to
+}
+
+Range.prototype = {
+  // Return true if x is in the range, otherwise return false
+  includes: function (x) { return this.from <= x && x <= this.to },
+
+  // A generator function that makes instances of the class iterable
+  [Symbol.iterator]: function* () {
+    for (let x = Math.ceil(this.from); x <= this.to; x++) { yield x }
+  },
+
+  // Return a string representation of the range
+  toString: function () { return "(" + this.from + "..." + this.to + ")" }
+}
+
+// Example uses of this new Range class
+let r = new Range(1, 3)
+// console.log(
+//   r.includes(2),
+//   r.toString()
+// )
+// console.log([...r])
+
+
+/** Constructors, Class Identity, and instanceof **/
