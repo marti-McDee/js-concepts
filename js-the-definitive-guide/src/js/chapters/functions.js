@@ -347,7 +347,7 @@ function sum2(a) {
 }
 
 console.log(
-  sum2([1, 2, 3]),
+  // sum2([1, 2, 3]),
   // sum2(1, 2, 3),
   // sum2([1, "a", 3])
 )
@@ -371,11 +371,11 @@ function multiply(x, y, ...rest) {
 function divide(x, y) { return x / y }
 
 const funcArr = [add, subtract, multiply, divide]
-console.log(funcArr.sort())
+// console.log(funcArr.sort())
 
-console.log(
-  multiply(4)
-)
+// console.log(
+//   multiply(4)
+// )
 
 const operators = {
   add: (x, y) => x + y,
@@ -394,10 +394,10 @@ function operate2(operation, operand1, operand2) {
   else throw "unknown operator"
 }
 
-console.log(
-  operate2("add", "hello", operate2("add", " ", "world")), '\n',
-  operate2("pow", 10, 2),
-)
+// console.log(
+//   operate2("add", "hello", operate2("add", " ", "world")), '\n',
+//   operate2("pow", 10, 2),
+// )
 
 
 /** Defining Your Own Function Properties **/
@@ -409,14 +409,14 @@ function uniqueInteger() {
   return uniqueInteger.counter++
 }
 
-console.log(uniqueInteger())
-console.log(uniqueInteger())
+// console.log(uniqueInteger())
+// console.log(uniqueInteger())
 
 // Compute factorials and cache results as properties of the function itself
 function Factorial1(n) {
-  if(Number.isInteger(n) && n > 0) {
-    if(!(n in Factorial1)) {
-      Factorial1[n] = n * Factorial1(n-1)
+  if (Number.isInteger(n) && n > 0) {
+    if (!(n in Factorial1)) {
+      Factorial1[n] = n * Factorial1(n - 1)
     }
 
     return Factorial1[n]
@@ -425,8 +425,101 @@ function Factorial1(n) {
   }
 }
 
+// console.log(
+//   Factorial1[1] = 1,
+//   Factorial1(6),
+//   Factorial1[5]
+// )
+
+
+/** Functions as Namespaces **/
+
+// Simulating Namespace with object
+const bestSellersSlider = {
+  get_products: function () {
+    console.log(this.products.join('\n').toString())
+  }
+}
+
+bestSellersSlider.products = ['product 1', 'product 2', 'product 3']
+bestSellersSlider.interval = 3000
+
+bestSellersSlider.get_products()
+
+
+/*** Closures ***/
+let uniqueInteger1 = (function () {
+  let counter = 0
+  return () => { return counter++ }
+})()
+
 console.log(
-  Factorial1[1] = 1,
-  Factorial1(6),
-  Factorial1[5]
+  uniqueInteger1(),
+  uniqueInteger1(),
+  uniqueInteger1(),
+  uniqueInteger1()
 )
+
+// Private variables via Nested Functions
+function counter() {
+  let n = 0
+  return {
+    count: function () { return n++ },
+    reset: function () { n = 0 }
+  }
+}
+
+let c = counter(), d = counter()
+
+const arr4 = [1, 2, 3]
+const e = arr4
+const f = arr4
+// console.log(e === f)
+// console.log(c, d)
+
+// console.log(
+//   c.count(),
+//   d.count(),
+// )
+
+c.reset()
+
+// console.log(
+//   c.count(),
+//   d.count(),
+// )
+
+// combining closure technique with property getters and setters
+function counter1(n) {
+  return {
+    get count() { return n++ },
+    set count(m) {
+      if (m > n) n = m
+      else throw Error('Count can only be set to a larger value, bahahaha!')
+    }
+  }
+}
+
+let c1 = counter(1000)
+
+function addPrivateProp(o, name, predicate) {
+  let value
+
+  o[`get${name}`] = function () { return value }
+  o[`set${name}`] = function (v) {
+    if (predicate && !predicate(v)) {
+      throw new TypeError(`set${name}: invalid value ${v}`)
+    } else {
+      value = v
+    }
+  }
+}
+
+
+let person1 = {}
+
+addPrivateProp(person1, "Name", x => typeof x === 'string')
+
+person1.setName('David Martinez')
+console.log(person1.getName())
+// person1.setName(0)
