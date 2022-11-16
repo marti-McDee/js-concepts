@@ -46,10 +46,10 @@ const book2 = {
   published: true
 }
 
-console.log(
-  book2['author'],
-  book2.title
-)
+// console.log(
+//   book2['author'],
+//   book2.title
+// )
 
 
 /** Objects as Associative Arrays **/
@@ -63,7 +63,7 @@ const cryptoStonks = {
 }
 
 addstock(cryptoStonks, 'eth', 10.5)
-console.log(cryptoStonks)
+// console.log(cryptoStonks)
 
 function computeValue(portfolio) {
   let total = 0.0
@@ -87,4 +87,22 @@ function getQuote(stock) {
   }
 }
 
-console.log(computeValue(cryptoStonks))
+// console.log(computeValue(cryptoStonks))
+
+
+/** Inheritance **/
+
+const o = {}
+o.x = 4
+// console.log(o.x)
+o.x = 'hi'
+// console.log(o.x)
+
+const obj1 = {
+  r: 5
+}
+const b1 = Object.create(obj1)
+// console.log(obj1 === b1) //false
+b1.x = 1; b1.y =1
+b1.r = 2
+// console.log(obj1.r)  // 5
