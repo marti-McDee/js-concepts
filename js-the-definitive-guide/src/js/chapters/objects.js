@@ -106,3 +106,31 @@ const b1 = Object.create(obj1)
 b1.x = 1; b1.y =1
 b1.r = 2
 // console.log(obj1.r)  // 5
+
+
+/** Property Access Errors **/
+const novel = {
+  title: "Robot Zombie Vampyre Ninja",
+  author: {
+    firstname: "Marti",
+    lastname: "Mcdee"
+  },
+  year: "TBA"
+}
+
+console.log(novel.subtitle) // undefined: property doesn't exist
+
+// let len = novel.subtitle.length // TypeError: Cannot read properties of undefined (reading 'length')
+
+// A verbose and explicit technique
+// let len = undefined
+// if(novel) {
+//   if(novel.subtitle) {
+//     len = novel.subtitle.length
+//   }
+// }
+
+novel.subtitle = "Vol.3: The Reckoning"
+
+let len = novel?.subtitle?.length
+console.log(len)  // 20
